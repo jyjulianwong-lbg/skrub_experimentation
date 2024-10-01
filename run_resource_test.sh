@@ -7,3 +7,5 @@ python -m data_generator
 
 docker build . -t skrub-experimentation:latest
 docker run skrub-experimentation
+
+deactivate
