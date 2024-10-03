@@ -6,6 +6,6 @@ source /c/dev/virtual/skrub_experimentation/Scripts/activate
 python -m data_generator
 
 docker build . -t skrub-experimentation:latest
-docker run skrub-experimentation
+docker run --name skrub-experimentation skrub-experimentation
 
 deactivate
