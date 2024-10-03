@@ -3,7 +3,7 @@ import random
 import pandas as pd
 from skrub.datasets import fetch_world_bank_indicator
 
-CUSTOM_AUGMENT_TIMES = 10
+CUSTOM_AUGMENT_TIMES = 1000
 
 
 def CUSTOM_augment(df, noise_cols, times=CUSTOM_AUGMENT_TIMES):
@@ -31,8 +31,10 @@ def CUSTOM_create_datasets():
         thousands=",",
     )
     df_1.drop(df_1.tail(1).index, inplace=True)
+    df_1 = df_1.head(100)
 
     df_2 = fetch_world_bank_indicator(indicator_id="NY.GDP.PCAP.CD").X
+    df_2 = df_2.head(100)
     
     # TODO: Duplicated.
     col_keys_1 = ["Country"]
