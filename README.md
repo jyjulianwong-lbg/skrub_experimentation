@@ -20,7 +20,19 @@ To test **exact reconciliation**, comment out lines 13 to 19. To test **fuzzy re
 python -m data_generator
 ```
 
-### 3. Prepare the AARP web app
+### 3. Prepare the AARP web app and the Reconciler job
+Build the Reconciler Docker image and prepare the Minikube cluster.
+```
+cd /path/to/tnt01-aud-aarp-app-reconciler
+minikube start
+minikube addons enable gcp-auth
+eval $(minikube -p minikube docker-env)
+docker build . -t <image-name>
+kubectl create namespace <namespace>
+```
+`<image-name>` is most likely going to be `aud-aarp-reconciler`.
+`<namespace>` is most likely going to be `aud-aarp-reconciler`.
+
 Have the AARP web app open in your web browser and be ready to trigger Reconciler. Do **not** trigger the job yet.
 
 ### 4. Set `kubectl` to the correct namespace
