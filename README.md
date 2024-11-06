@@ -17,7 +17,7 @@ The 2 CSV files are 2 separate datasets that share the same primary key, `Countr
 The base datasets contain 100 rows each. To increase this, change `CUSTOM_AUGMENT_TIMES` at the top of the `.py` file. For example, to generate 1000 rows for each CSV file, set `CUSTOM_AUGMENT_TIMES = 10`.
 To test **exact reconciliation**, comment out lines 13 to 19. To test **fuzzy reconciliation**, leave the file as is.
 ```
-python -m data_generator.py
+python -m data_generator
 ```
 
 ### 3. Build the Reconciler Docker image
