@@ -37,4 +37,5 @@ docker run --name <container-name> <image-name>
 ```
 
 ### 6. View the results
+Stop the background resource monitoring script by entering `CTRL-C` in the Git Bash window it is running in.
 A new CSV file with a name starting with `resource-monitor-docker-...csv` will appear in the same folder where you started your resource monitoring script. Enjoy!
