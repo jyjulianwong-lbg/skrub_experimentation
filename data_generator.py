@@ -10,13 +10,13 @@ def CUSTOM_augment(df, noise_cols, times=CUSTOM_AUGMENT_TIMES):
     # Duplicate each row 'times' number of times
     df = pd.concat([df] * times, ignore_index=True)
 
-    for noise_col in noise_cols:
-        for i in df.index:
-            # Generate a random number between min_count and max_count
-            num_asterisks = random.randint(1, 10)
-            # Create a string with the generated number of asterisks
-            asterisks_string = '*' * num_asterisks
-            df.loc[i, noise_col] = df.loc[i, noise_col] + asterisks_string
+    # for noise_col in noise_cols:
+    #     for i in df.index:
+    #         # Generate a random number between min_count and max_count
+    #         num_asterisks = random.randint(1, 10)
+    #         # Create a string with the generated number of asterisks
+    #         asterisks_string = '*' * num_asterisks
+    #         df.loc[i, noise_col] = df.loc[i, noise_col] + asterisks_string
 
     print(f"DataFrame augmented: len(df) = {len(df)}")
     return df
