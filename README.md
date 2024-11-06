@@ -3,7 +3,7 @@
 ## How to do resource monitoring for any Reconciler Docker container
 
 ```
-cd /path/to/skrub_experimenation
+cd /path/to/skrub_experimentation
 ```
 
 ### 1. Install dependencies
