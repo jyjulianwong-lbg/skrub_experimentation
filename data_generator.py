@@ -3,7 +3,7 @@ import random
 import pandas as pd
 from skrub.datasets import fetch_world_bank_indicator
 
-CUSTOM_AUGMENT_TIMES = 1000
+CUSTOM_AUGMENT_TIMES = 10
 
 
 def CUSTOM_augment(df, noise_cols, times=CUSTOM_AUGMENT_TIMES):
