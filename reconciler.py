@@ -52,8 +52,8 @@ def main():
     # CUSTOM: Timer
     time_1 = time.time()
 
-    df_1 = pd.read_csv("data/df_1.csv", index_col=0)
-    df_2 = pd.read_csv("data/df_2.csv", index_col=0)
+    df_1 = pd.read_csv("data/df_1.csv")
+    df_2 = pd.read_csv("data/df_2.csv")
 
     df_1 = create_id_col(df_1, col_keys_1)
     df_2 = create_id_col(df_2, col_keys_2)
