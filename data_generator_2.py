@@ -7,13 +7,12 @@ def CUSTOM_augment(df, noise_cols, noise_strs):
     for noise_col in noise_cols:
         for i in df.index:
             # Randomly add noise to the end
-            if random.randint(0, 1) == 1:
-                noise_str_idx = random.randint(0, len(noise_strs) - 1)
-                noise_str = noise_strs[noise_str_idx]
-                df.loc[i, noise_col] = f"{df.loc[i, noise_col]}. {noise_str}."
+            noise_str_idx = random.randint(0, len(noise_strs) - 1)
+            noise_str = noise_strs[noise_str_idx]
+            df.loc[i, noise_col] = f"{df.loc[i, noise_col]}. {noise_str}."
 
             # Generate a random number between min_count and max_count
-            num_asterisks = random.randint(0, 1)
+            num_asterisks = random.randint(0, 3)
             # Create a string with the generated number of asterisks
             asterisks_string = '*' * num_asterisks
             # Augment existing string with asterisks at the end
@@ -23,11 +22,30 @@ def CUSTOM_augment(df, noise_cols, noise_strs):
     return df
 
 
+# Function to split text into sentences
+def CUSTOM_augment_by_split_text(df):
+    new_rows = []
+    for index, row in df.iterrows():
+        sentences = row['text'].split('. ')
+        for sentence in sentences:
+            if sentence:  # Avoid adding empty sentences
+                new_rows.append({'text': row['categories'], 'author': row['author']})
+                new_rows.append({'text': sentence.strip(), 'author': row['author']})
+    new_df = pd.DataFrame(new_rows)
+    print(f"DataFrame augmented: len(df) = {len(new_df)}")
+    return new_df
+
+
 def CUSTOM_create_datasets():
     # https://github.com/MartinStyk/quotes-recommender/blob/master/data/quotes_filtered_2.csv
     df = pd.read_csv("quotes.csv")
-    df_1 = df.iloc[1000:2000, :]
-    df_2 = df.iloc[1200:2200, :]
+    df = CUSTOM_augment_by_split_text(df)
+    # assert len(df) == 9344
+
+    df_1 = df.copy().iloc[000:9000, :]
+    df_2 = df.copy().iloc[200:9200, :]
+    df_1["text"] = df_1["text"].apply(lambda x: " ".join(x.split()[:5])).to_list()
+    df_2["text"] = df_2["text"].apply(lambda x: " ".join(x.split()[:5])).to_list()
     noise_strs = df.iloc[:100, :]["text"].apply(lambda x: " ".join(x.split()[:5])).to_list()
     
     # TODO: Duplicated.
