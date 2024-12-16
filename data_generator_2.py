@@ -46,7 +46,7 @@ def CUSTOM_create_datasets():
     df_2 = df.copy().iloc[200:9200, :]
     df_1["text"] = df_1["text"].apply(lambda x: " ".join(x.split()[:5])).to_list()
     df_2["text"] = df_2["text"].apply(lambda x: " ".join(x.split()[:5])).to_list()
-    noise_strs = df.iloc[:100, :]["text"].apply(lambda x: " ".join(x.split()[:5])).to_list()
+    noise_strs = df.iloc[:100, :]["text"].apply(lambda x: " ".join(x.split()[:2])).to_list()
     
     # TODO: Duplicated.
     col_keys_1 = ["text"]
